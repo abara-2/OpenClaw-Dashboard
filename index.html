@@ -792,6 +792,8 @@
     };
     var onApiKeyValidated = props.onApiKeyValidated || function() {
     };
+    var onApiKeyChange = props.onApiKeyChange || function() {
+    };
     var currentChapter = props.currentChapter || null;
     var chapterProgress = props.chapterProgress || null;
     var _localApiKey = (0, import_react3.useState)("");
@@ -904,17 +906,21 @@
         if (response.ok) {
           setApiKeyStatus("valid");
           setLocalApiKey(key);
+          onApiKeyChange(key);
         } else if (response.status === 401) {
           setApiKeyStatus("invalid");
           setLocalApiKey("");
+          onApiKeyChange("");
         } else {
           setApiKeyStatus("uncertain");
           setLocalApiKey(key);
+          onApiKeyChange(key);
         }
       }).catch(function() {
         clearTimeout(timeout);
         setApiKeyStatus("uncertain");
         setLocalApiKey(key);
+        onApiKeyChange(key);
       });
     };
     (0, import_react3.useEffect)(function() {
@@ -3580,6 +3586,11 @@ http://\${TAILSCALE_IP}:18789`, title: "Dashboard URL", userVars })), /* @__PURE
         isOpen: cowanOpen,
         onClose: () => setCowanOpen(false),
         onApiKeyValidated: setApiKeyValidated,
+        onApiKeyChange: (key) => {
+          if (key) {
+            setUserVars((prev) => ({ ...prev, ANTHROPIC_API_KEY: key }));
+          }
+        },
         currentChapter: activeTab === "buch" && lastInteractedChapter ? {
           number: lastInteractedChapter,
           title: CHAPTERS[lastInteractedChapter]?.title || "",
