@@ -2267,7 +2267,7 @@
     var s = SERVICE_LINKS[key];
     return s && s.affiliate !== null;
   }
-  var APP_VERSION = "6.2.2";
+  var APP_VERSION = "6.2.3";
   var VERSION_CHECK_URL = "https://tikitackr.github.io/OpenClaw-Dashboard/version.json";
   var SPRINT_TASKS = {
     sprint1: [
@@ -3933,7 +3933,8 @@ http://\${TAILSCALE_IP}:18789`, title: "Dashboard URL", userVars })), /* @__PURE
     )), /* @__PURE__ */ import_react4.default.createElement("style", { dangerouslySetInnerHTML: { __html: [
       "@keyframes cowanGlow { 0% { filter: drop-shadow(0 0 6px rgba(13, 148, 136, 0.4)); } 50% { filter: drop-shadow(0 0 18px rgba(13, 148, 136, 0.8)) drop-shadow(0 0 40px rgba(13, 148, 136, 0.3)); } 100% { filter: drop-shadow(0 0 6px rgba(13, 148, 136, 0.4)); } }",
       "@keyframes cowanBubbleIn { 0% { opacity: 0; transform: translateY(8px) scale(0.8); } 100% { opacity: 1; transform: translateY(0) scale(1); } }",
-      "@keyframes cowanBubbleOut { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(8px) scale(0.8); } }"
+      "@keyframes cowanBubbleOut { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(8px) scale(0.8); } }",
+      "@keyframes cowanPanelGlow { 0% { box-shadow: -8px 0 30px rgba(0,0,0,0.5), 0 0 15px rgba(185,28,28,0.3), inset 0 0 30px rgba(185,28,28,0.05); } 50% { box-shadow: -8px 0 30px rgba(0,0,0,0.5), 0 0 35px rgba(185,28,28,0.6), inset 0 0 60px rgba(185,28,28,0.1); } 100% { box-shadow: -8px 0 30px rgba(0,0,0,0.5), 0 0 15px rgba(185,28,28,0.3), inset 0 0 30px rgba(185,28,28,0.05); } }"
     ].join(" ") } }), !cowanOpen && /* @__PURE__ */ import_react4.default.createElement("div", { style: { position: "fixed", bottom: 8, right: 8, zIndex: 1e3 } }, cowanBubble && /* @__PURE__ */ import_react4.default.createElement("div", { style: {
       position: "absolute",
       bottom: "100%",
@@ -3991,17 +3992,20 @@ http://\${TAILSCALE_IP}:18789`, title: "Dashboard URL", userVars })), /* @__PURE
       width: 400,
       height: "100vh",
       background: "#0f172a",
-      borderLeft: "1px solid #3b1111",
+      borderLeft: cowanOpen && apiKeyValidated ? "1px solid #7f1d1d" : "1px solid #3b1111",
       display: "flex",
       flexDirection: "column",
       transition: "right 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-      boxShadow: cowanOpen ? "-8px 0 30px rgba(0, 0, 0, 0.5)" : "none"
+      boxShadow: cowanOpen ? "-8px 0 30px rgba(0, 0, 0, 0.5)" : "none",
+      animation: cowanOpen && apiKeyValidated ? "cowanPanelGlow 3s ease-in-out infinite" : "none"
     } }, /* @__PURE__ */ import_react4.default.createElement("div", { style: {
-      background: "linear-gradient(135deg, #991b1b, #7f1d1d)",
+      background: apiKeyValidated ? "linear-gradient(135deg, #b91c1c, #991b1b)" : "linear-gradient(135deg, #991b1b, #7f1d1d)",
       padding: "14px 16px",
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      boxShadow: apiKeyValidated ? "0 2px 20px rgba(185, 28, 28, 0.4)" : "none",
+      transition: "background 0.5s ease, box-shadow 0.5s ease"
     } }, /* @__PURE__ */ import_react4.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: 10 } }, /* @__PURE__ */ import_react4.default.createElement(IconOpenClaw, { size: 22 }), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("div", { style: { fontWeight: 700, fontSize: 16, color: "#fff" } }, "Cowan"), /* @__PURE__ */ import_react4.default.createElement("div", { style: { fontSize: 11, color: "rgba(255,255,255,0.7)" } }, "Die Buch-Instanz"))), /* @__PURE__ */ import_react4.default.createElement(
       "button",
       {
