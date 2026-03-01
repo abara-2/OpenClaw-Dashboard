@@ -1219,6 +1219,9 @@
     var _pendingImage = (0, import_react3.useState)(null);
     var pendingImage = _pendingImage[0];
     var setPendingImage = _pendingImage[1];
+    var _showOnboarding = (0, import_react3.useState)(false);
+    var showOnboarding = _showOnboarding[0];
+    var setShowOnboarding = _showOnboarding[1];
     var typingWordsRef = (0, import_react3.useRef)([]);
     var typingSourcesRef = (0, import_react3.useRef)([]);
     var apiKeyRef = (0, import_react3.useRef)("");
@@ -1731,7 +1734,7 @@
         opacity: idx === 0 ? 1 : 0.7,
         animation: idx === 0 ? "feedSlideIn 0.3s ease" : "none"
       } }, /* @__PURE__ */ React.createElement("span", null, event.icon), /* @__PURE__ */ React.createElement("span", { style: { flex: 1 } }, event.text), /* @__PURE__ */ React.createElement("span", { style: { color: theme.mutedText, fontSize: "10px", flexShrink: 0 } }, event.time));
-    }), companionFeed.length === 0 && /* @__PURE__ */ React.createElement("div", { style: { fontSize: "11px", color: theme.mutedText, padding: "8px 0" } }, "Warte auf Aktivitaet vom Handy...")), /* @__PURE__ */ React.createElement("style", { dangerouslySetInnerHTML: { __html: "@keyframes companionPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } } @keyframes feedSlideIn { 0% { opacity: 0; transform: translateY(-8px); } 100% { opacity: 1; transform: translateY(0); } }" } })), /* @__PURE__ */ React.createElement("style", { dangerouslySetInnerHTML: { __html: "@keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } } .cowan-widget-input::placeholder { color: " + (apiActive ? "#e0e8f4" : "#64748b") + " !important; opacity: 1; }" } }), /* @__PURE__ */ React.createElement("div", { style: { flex: 1, position: "relative", minHeight: 0, overflow: "hidden" } }, /* @__PURE__ */ React.createElement("div", { style: {
+    }), companionFeed.length === 0 && /* @__PURE__ */ React.createElement("div", { style: { fontSize: "11px", color: theme.mutedText, padding: "8px 0" } }, "Warte auf Aktivitaet vom Handy...")), /* @__PURE__ */ React.createElement("style", { dangerouslySetInnerHTML: { __html: "@keyframes companionPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } } @keyframes feedSlideIn { 0% { opacity: 0; transform: translateY(-8px); } 100% { opacity: 1; transform: translateY(0); } }" } })), /* @__PURE__ */ React.createElement("style", { dangerouslySetInnerHTML: { __html: "@keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } } @keyframes wissenPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); } 50% { box-shadow: 0 0 12px 4px rgba(34,197,94,0.25); } } .cowan-widget-input::placeholder { color: " + (apiActive ? "#e0e8f4" : "#64748b") + " !important; opacity: 1; }" } }), /* @__PURE__ */ React.createElement("div", { style: { flex: 1, position: "relative", minHeight: 0, overflow: "hidden" } }, /* @__PURE__ */ React.createElement("div", { style: {
       position: "absolute",
       top: 0,
       left: 0,
@@ -1934,8 +1937,12 @@
       "div",
       {
         onClick: function() {
-          setChunkBrowserIndex(0);
-          setShowChunkBrowser(true);
+          if (!apiActive) {
+            setShowOnboarding(true);
+          } else {
+            setChunkBrowserIndex(0);
+            setShowChunkBrowser(true);
+          }
         },
         style: {
           backgroundColor: theme.glassCardBg,
@@ -1952,7 +1959,8 @@
           gap: "8px",
           textAlign: "center",
           minHeight: "100px",
-          justifyContent: "center"
+          justifyContent: "center",
+          animation: !apiActive ? "wissenPulse 2.5s ease-in-out infinite" : "none"
         },
         onMouseEnter: function(e) {
           e.currentTarget.style.backgroundColor = theme.glassHighlight;
@@ -1989,7 +1997,7 @@
         "div",
         null,
         React.createElement("div", { style: { fontSize: "13px", fontWeight: 600, color: "#22c55e" } }, "Wissen"),
-        React.createElement("div", { style: { fontSize: "10px", color: theme.mutedText, marginTop: "2px" } }, KNOWLEDGE_BASE.length + " Chunks")
+        React.createElement("div", { style: { fontSize: "10px", color: theme.mutedText, marginTop: "2px" } }, apiActive ? KNOWLEDGE_BASE.length + " Chunks" : "Hier starten")
       )
     ), React.createElement(
       "div",
@@ -2614,7 +2622,90 @@
         }
       },
       chunkBrowserIndex < KNOWLEDGE_BASE.length - 1 ? "\u2192" : "Schlie\xDFen"
-    )), /* @__PURE__ */ React.createElement("div", { style: { textAlign: "center", fontSize: "10px", color: theme.mutedText, marginTop: "8px" } }, chunkBrowserIndex + 1 + " / " + KNOWLEDGE_BASE.length))), /* @__PURE__ */ React.createElement("style", { dangerouslySetInnerHTML: { __html: "@keyframes lobsterWiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-15deg); } 75% { transform: rotate(15deg); } }" } }));
+    )), /* @__PURE__ */ React.createElement("div", { style: { textAlign: "center", fontSize: "10px", color: theme.mutedText, marginTop: "8px" } }, chunkBrowserIndex + 1 + " / " + KNOWLEDGE_BASE.length))), showOnboarding && /* @__PURE__ */ React.createElement("div", { style: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(0,0,0,0.5)",
+      backdropFilter: "blur(8px)",
+      WebkitBackdropFilter: "blur(8px)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 200,
+      animation: "fadeInUp 0.3s ease"
+    } }, /* @__PURE__ */ React.createElement("div", { style: {
+      backgroundColor: theme.glassBg,
+      backdropFilter: "blur(24px) saturate(180%)",
+      WebkitBackdropFilter: "blur(24px) saturate(180%)",
+      border: "1px solid " + theme.glassBorder,
+      borderRadius: "20px",
+      padding: "28px 24px",
+      maxWidth: "380px",
+      width: "90%",
+      maxHeight: "80%",
+      overflowY: "auto",
+      color: theme.text
+    } }, /* @__PURE__ */ React.createElement("div", { style: { textAlign: "center", marginBottom: "20px" } }, /* @__PURE__ */ React.createElement("div", { style: {
+      width: "56px",
+      height: "56px",
+      borderRadius: "16px",
+      background: "linear-gradient(135deg, #f59e0b, #d97706)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      margin: "0 auto 12px",
+      fontSize: "28px",
+      fontWeight: 700,
+      color: "#ffffff"
+    } }, "C"), /* @__PURE__ */ React.createElement("div", { style: { fontSize: "18px", fontWeight: 700 } }, "Willkommen bei Cowan"), /* @__PURE__ */ React.createElement("div", { style: { fontSize: "13px", color: theme.mutedText, marginTop: "4px" } }, "Dein intelligenter Buch-Begleiter")), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: "16px" } }, /* @__PURE__ */ React.createElement("div", { style: { fontSize: "13px", fontWeight: 700, color: "#22c55e", marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" } }, /* @__PURE__ */ React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "#22c55e", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M4 19.5A2.5 2.5 0 0 1 6.5 17H20" }), /* @__PURE__ */ React.createElement("path", { d: "M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" })), "Wissen ist schon da"), /* @__PURE__ */ React.createElement("div", { style: { fontSize: "12px", lineHeight: 1.6, color: theme.mutedText } }, "Cowan kennt bereits ", KNOWLEDGE_BASE.length, " Wissens-Bausteine zu deinem Buch. Du kannst Fragen stellen, Kapitel besprechen und dir Zusammenfassungen geben lassen.")), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: "16px" } }, /* @__PURE__ */ React.createElement("div", { style: { fontSize: "13px", fontWeight: 700, color: theme.primary, marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" } }, /* @__PURE__ */ React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: theme.primary, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React.createElement("rect", { x: "3", y: "11", width: "18", height: "11", rx: "2", ry: "2" }), /* @__PURE__ */ React.createElement("path", { d: "M7 11V7a5 5 0 0 1 10 0v4" })), "Claude API-Key benoetigt"), /* @__PURE__ */ React.createElement("div", { style: { fontSize: "12px", lineHeight: 1.6, color: theme.mutedText } }, "Um mit Cowan zu chatten, brauchst du einen API-Key von Anthropic. Den bekommst du kostenlos unter", " ", /* @__PURE__ */ React.createElement("a", { href: "https://console.anthropic.com/settings/keys", target: "_blank", rel: "noopener noreferrer", style: { color: theme.primary, textDecoration: "underline" } }, "console.anthropic.com"), ". Gib ihn links in der API-Key-Kachel ein.")), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: "16px" } }, /* @__PURE__ */ React.createElement("div", { style: {
+      backgroundColor: "rgba(34,197,94,0.08)",
+      border: "1px solid rgba(34,197,94,0.2)",
+      borderRadius: "12px",
+      padding: "12px"
+    } }, /* @__PURE__ */ React.createElement("div", { style: { fontSize: "13px", fontWeight: 700, color: "#22c55e", marginBottom: "4px", display: "flex", alignItems: "center", gap: "6px" } }, /* @__PURE__ */ React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "#22c55e", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" })), "Dein Key bleibt sicher"), /* @__PURE__ */ React.createElement("div", { style: { fontSize: "11px", lineHeight: 1.6, color: theme.mutedText } }, "Dein API-Key wird nur lokal in deinem Browser gespeichert (localStorage). Er wird nie an unsere Server gesendet \u2013 Anfragen gehen direkt von deinem Browser an die Claude API. Niemand ausser dir hat Zugriff."))), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: "20px" } }, /* @__PURE__ */ React.createElement("div", { style: { fontSize: "13px", fontWeight: 700, color: theme.primary, marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" } }, /* @__PURE__ */ React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: theme.primary, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React.createElement("rect", { x: "5", y: "2", width: "14", height: "20", rx: "2", ry: "2" }), /* @__PURE__ */ React.createElement("line", { x1: "12", y1: "18", x2: "12.01", y2: "18" })), "Handy als Begleiter"), /* @__PURE__ */ React.createElement("div", { style: { fontSize: "12px", lineHeight: 1.6, color: theme.mutedText } }, "Verbinde dein Handy per QR-Code und nutze es als Sprach-Assistent: Buchseiten scannen, Sprachbefehle geben oder im Dialog mit Cowan sprechen \u2013 direkt neben deinem Buch.")), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: "10px" } }, /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        onClick: function() {
+          setShowOnboarding(false);
+        },
+        style: {
+          flex: 1,
+          padding: "12px",
+          borderRadius: "12px",
+          border: "1px solid " + theme.glassBorder,
+          backgroundColor: theme.glassCardBg,
+          color: theme.text,
+          fontSize: "13px",
+          fontWeight: 600,
+          cursor: "pointer"
+        }
+      },
+      "Verstanden"
+    ), /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        onClick: function() {
+          setShowOnboarding(false);
+          setChunkBrowserIndex(0);
+          setShowChunkBrowser(true);
+        },
+        style: {
+          flex: 1,
+          padding: "12px",
+          borderRadius: "12px",
+          border: "none",
+          background: "linear-gradient(135deg, #d97706, #b45309)",
+          color: "#ffffff",
+          fontSize: "13px",
+          fontWeight: 600,
+          cursor: "pointer"
+        }
+      },
+      "Wissen ansehen"
+    )))), /* @__PURE__ */ React.createElement("style", { dangerouslySetInnerHTML: { __html: "@keyframes lobsterWiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-15deg); } 75% { transform: rotate(15deg); } }" } }));
   }
   if (typeof window !== "undefined") {
     window.CowanWidget = CowanWidget;
